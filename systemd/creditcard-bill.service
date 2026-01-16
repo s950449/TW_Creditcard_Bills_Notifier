@@ -1,0 +1,15 @@
+[Unit]
+Description=Credit Card Bill Notifier Service
+After=network.target
+
+[Service]
+Type=oneshot
+# Update these paths to match your installation
+WorkingDirectory=$XDG_RUNTIME_DIR/creditcard-bill
+ExecStart=$XDG_RUNTIME_DIR/creditcard-bill/venv/bin/python main.py --fetch
+ExecStart=$XDG_RUNTIME_DIR/creditcard-bill/venv/bin/python main.py --notify
+# Optional: Ensure Keyring is accessible
+Environment=DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus
+
+[Install]
+WantedBy=default.target

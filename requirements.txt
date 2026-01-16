@@ -1,0 +1,16 @@
+python-dotenv
+sqlite-utils
+pikepdf
+beautifulsoup4
+requests
+pdfminer.six
+keyring
+secretstorage
+fastapi
+uvicorn[standard]
+jinja2
+python-multipart
+google-api-python-client
+google-auth-oauthlib
+google-auth-httplib2
+pdfplumber

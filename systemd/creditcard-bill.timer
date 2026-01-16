@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Credit Card Bill Notifier Daily
+
+[Timer]
+OnCalendar=daily
+# Or run at a specific time, e.g., 09:00 AM
+# OnCalendar=*-*-* 09:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

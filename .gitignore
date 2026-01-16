@@ -1,0 +1,12 @@
+# Sensitive Data
+*.db
+.env
+token.json
+credentials.json
+fetch_log*.txt
+banks/test*.py
+
+# Cache
+__pycache__/
+*/__pycache__
+venv/

@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    user: "1000:1000"
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - .:/app
+      - /run/user/1000/bus:/run/user/1000/bus
+    environment:
+      - DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
+      - EMAIL_USER=${EMAIL_USER}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - USE_GMAIL_API=${USE_GMAIL_API:-true}
+    restart: always
+
+  # Optional: A separate container for the scheduler if not using the WebUI to trigger
+  # cron:
+  #   build: .
+  #   command: ["python", "main.py", "--fetch", "--notify"]
+  #   volumes:
+  #     - .:/app
+  #     - /run/user/1000/bus:/run/user/1000/bus
+  #   environment:
+  #     - DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus
