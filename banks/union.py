@@ -7,12 +7,10 @@ class UnionParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # Specific pattern for Union Bank
-        # Amount: 總計 638
         print(f"[UnionParser] Attempting to extract from text (length: {len(text)})")
         
         # 1. Look for amount using "總計"
         amount = None
-        # Pattern: 總計 638 or 總計: 638
         amount_match = re.search(r"總計\s*[:：]?\s*([\d,]+)", text)
         if amount_match:
             amount = float(amount_match.group(1).replace(",", ""))
