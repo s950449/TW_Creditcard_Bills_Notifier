@@ -8,7 +8,6 @@ class HuaNanParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # HuaNan Bank pattern:
-        # 金額 4,132 元,請於 11月07日 之前檢視帳戶餘額以利扣款
         print(f"[HuaNanParser] Attempting to extract from text (length: {len(text)})")
         
         # 1. Primary pattern from user

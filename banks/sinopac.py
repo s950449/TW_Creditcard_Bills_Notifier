@@ -17,7 +17,7 @@ class SinoPacParser(BaseParser):
         due_date = None
 
         # 1. Target the specific sentence: 您的預定扣款金額 [金額] 元將於 [日期] ...
-        # This is the most reliable one if it exists.
+.
         sentence_pattern = r"您的預定扣款金額\s*(?:臺幣)?\s*([\d,]+)\s*元.*?將於\s*(\d{4}/\d{2}/\d{2})"
         match = re.search(sentence_pattern, text_norm, re.DOTALL)
         if match:
@@ -26,14 +26,11 @@ class SinoPacParser(BaseParser):
             print(f"[SinoPacParser] Matched sentence pattern. Amount: {amount}, Due: {due_date}")
         else:
             # 2. Fallback: Search for amount and due date separately if sentence match fails
-            # Search for Due Date: 您的繳款截止日YYYY/MM/DD
+
             date_match = re.search(r"您的繳款截止日\s*(\d{4}/\d{2}/\d{2})", text_norm)
             if date_match:
                 due_date = date_match.group(1)
             
-            # Search for Amount in the table: 臺幣 ... [金額] (last columns are 本期應繳總金額 and 本期最低應繳金額)
-            # The log shows: 臺幣 300 300 1,353 0 0 1,353 500
-            # We want the one before the last (本期應繳總金額)
             table_pattern = r"臺幣\s+[\d,.]+\s+[\d,.]+\s+[\d,.]+\s+[\d,.]+\s+[\d,.]+\s+([\d,.]+)\s+[\d,.]+"
             table_match = re.search(table_pattern, text_norm)
             if table_match:

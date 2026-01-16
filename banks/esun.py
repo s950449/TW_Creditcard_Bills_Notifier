@@ -7,7 +7,6 @@ class ESUNParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # Specific pattern for E.SUN Bank
-        # The user specified: 本期應繳總金額： TWD 1,754
         print(f"[ESUNParser] Attempting to extract from text (length: {len(text)})")
         
         # 1. Primary: TWD pattern (usually in the summary table)
@@ -46,7 +45,6 @@ class ESUNParser(BaseParser):
 
         if amount is not None:
             # 1. Try to find due date near "繳款截止日" first (Highest priority)
-            # This handles Minguo (114/12/22) and Gregorian
             date_patterns = [
                 r"繳款截止日[:\s：]*(\d{2,4}/\d{2}/\d{2})",
                 r"(\d{3}/\d{2}/\d{2})" # Specific 3-digit year pattern for Minguo

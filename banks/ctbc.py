@@ -7,7 +7,6 @@ class CTBCParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # Specific pattern for CTBC Bank
-        # Search for amount prefixed with '+': +12,345
         amount_pattern = r"\+\s*([\d,]+)"
         match = re.search(amount_pattern, text)
         

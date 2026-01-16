@@ -7,8 +7,6 @@ class FubonParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # Specific pattern for Fubon Bank
-        # Amount: □繳交全部應繳金額 NT$2,302元
-        # Due Date: 繳款期限 114/12/24
         print(f"[FubonParser] Attempting to extract from text (length: {len(text)})")
         
         # 1. Look for amount

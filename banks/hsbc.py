@@ -45,7 +45,6 @@ class HSBCParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # HSBC PDF search for due date
-        # Specific pattern: 167 2026 01 14 , 716603XXXXX
         # (Amount Year Month Day)
         print(f"[HSBCParser] Searching for patterns in text (length: {len(text)})")
         # print(f"[HSBCParser] Raw text snippet: {text[:500]!r}")

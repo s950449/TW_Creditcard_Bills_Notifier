@@ -7,18 +7,16 @@ class SCSBParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # Specific pattern for Shanghai Bank (SCSB)
-        # 本期自動扣繳款為新台幣O元
         text_norm = text.replace("新台幣", "新臺幣")
         
-        # Search for amount: 本期自動扣繳款為新臺幣 [金額] 元
+
         amount_pattern = r"本期自動扣繳款為新[臺台]幣\s*([\d,]+)\s*元"
         match = re.search(amount_pattern, text_norm)
         
         if match:
             amount = float(match.group(1).replace(",", ""))
             
-            # Search for specific Date pattern: 將於 [民國年/月/日] (後面可能是 "自您指定之帳號" 或其他文字)
-            # Sample: 將於 114/12/16自您指定之帳號
+            # Search for specific Date pattern:
             date_pattern = r"將於\s*(\d{2,3}/\d{2}/\d{2})(?:自您指定之帳號)?"
             date_match = re.search(date_pattern, text_norm)
             

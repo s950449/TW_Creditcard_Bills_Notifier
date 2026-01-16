@@ -7,8 +7,7 @@ class DBSParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # Specific patterns for DBS Bank
-        # Amount: 將自動扣繳5,754元
-        # Due Date: 繳交截止日:2026年01月12日
+
         print(f"[DBSParser] Attempting to extract from text (length: {len(text)})")
         
         # 1. Look for amount
@@ -20,7 +19,7 @@ class DBSParser(BaseParser):
 
         # 2. Look for due date
         due_date = None
-        # Pattern: 繳交截止日:2026年01月12日
+
         date_match = re.search(r"繳交截止日[:：]\s*(\d{4})[年/](\d{2})[月/](\d{2})日?", text)
         if date_match:
             due_date = f"{date_match.group(1)}/{date_match.group(2)}/{date_match.group(3)}"

@@ -7,7 +7,6 @@ class CathayParser(BaseParser):
 
     def _extract_info_from_text(self, text):
         # Specific pattern for Cathay Bank (國泰世華)
-        # Search for amount: 本期應繳總金額 [金額]
         amount_pattern = r"本期應繳總金額\s*([\d,]+)"
         match = re.search(amount_pattern, text)
         
